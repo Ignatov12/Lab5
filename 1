@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Film {
+    private String title;
+    private int durationMinutes;
+    private String genre;
+    private List<Director> directors;
+
+    public Film(String title, int durationMinutes, String genre) {
+        this.title = title;
+        this.durationMinutes = durationMinutes;
+        this.genre = genre;
+        this.directors = new ArrayList<>();
+    }
+
+    public void addDirector(String name, String surname) {
+        Director director = new Director(name, surname);
+        directors.add(director);
+    }
+
+    public void displayInfo() {
+        System.out.println("Title: " + title);
+        System.out.println("Duration: " + durationMinutes + " minutes");
+        System.out.println("Genre: " + genre);
+        System.out.println("Directors:");
+        for (Director director : directors) {
+            System.out.println(director.getFullName());
+        }
+    }
+
+    public class Director {
+        private String name;
+        private String surname;
+
+        public Director(String name, String surname) {
+            this.name = name;
+            this.surname = surname;
+        }
+
+        public String getFullName() {
+            return name + " " + surname;
+        }
+    }
+
+    public static void main(String[] args) {
+        Film film1 = new Film("Movie 1", 120, "Drama");
+        film1.addDirector("John", "Doe");
+        film1.addDirector("Jane", "Smith");
+
+        Film film2 = new Film("Movie 2", 90, "Comedy");
+        film2.addDirector("Alice", "Johnson");
+
+        System.out.println("Film 1 Info:");
+        film1.displayInfo();
+
+        System.out.println("\nFilm 2 Info:");
+        film2.displayInfo();
+    }
+}
